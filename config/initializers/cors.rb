@@ -5,11 +5,9 @@
 
 # Read more: https://github.com/cyu/rack-cors
 
-Rails.application.config.middleware.insert_before ActionDispatch::Static, Rack::Cors do
+Rails.application.config.middleware.insert_before 0, Rack::Cors do
     allow do
-      origins %w[
-        https://t2-airtime-demo.herokuapp.com
-      ]
+      origins ENV['CORS_ORIGIN']
       resource '*',
                headers: :any,
                methods: %i[get post options]
